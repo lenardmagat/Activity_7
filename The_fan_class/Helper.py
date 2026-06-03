@@ -1,12 +1,6 @@
-from .Schema import ReturnValueSchema
+from Schema import ReturnValueSchema
 class ReturnValue:
     def success(self, value) -> ReturnValueSchema:
-        ReturnValueSchema.is_success =  True
-        ReturnValueSchema.value = value
-        ReturnValueSchema.message = None
-        return  ReturnValueSchema
+        return  ReturnValueSchema(is_success = False, value = value, message = None)
     def failure(self, message) -> ReturnValueSchema:
-        ReturnValueSchema.is_success =  True
-        ReturnValueSchema.value = None
-        ReturnValueSchema.message = message
-        return  ReturnValueSchema    
+        return  ReturnValueSchema(is_success = False, value = None, message = message)    

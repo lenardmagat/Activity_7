@@ -8,7 +8,7 @@ class Pet:
         self.__name = name
         return 0
     
-    def set__animal_type(self, animal_type: str) -> None:
+    def set_animal_type(self, animal_type: str) -> None:
         self.__animal_type = animal_type
         return 0
     

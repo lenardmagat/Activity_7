@@ -1,64 +1,40 @@
-from Schema import FanData
-from Helper import ReturnValue
 class Fan:
     SLOW = 1
     MEDIUM = 2
     FAST = 3
-    def __init__(self, FanData: FanData):
-        self.speed = FanData.speed 
-        self.on = FanData.on
-        self.radius = FanData.radius
-        self.color = FanData.color
+    def __init__(self, speed: int = SLOW, radius: float = 5.0, color: str = "blue", on: bool = False):
+        self.__speed = speed
+        self.__radius = radius
+        self.__color = color
+        self.__on = on
 
-    @property
-    def speed(self) -> ReturnValue:
-        ReturnValue().success(value = self.__speed)
+    def get_speed(self) -> int:
+        return self.__speed
+    
+    def set_speed(self, speed: int) -> None:
+        if speed not in [self.SLOW, self.MEDIUM, self.FAST]:
+            return print("Invalid input.")
+        self.__speed = speed
+        return 0
+    
+    def get_radius(self) -> float:
+        return self.__radius
+    
+    def set_radius(self, radius: float) -> None:
+        if radius <= 0: return print("Invalid Output.")
+        self.__radius = radius
+        return 0
 
-    @speed.setter 
-    def speed(self, value: int):
-        if not isinstance(value, int):
-            return ReturnValue().failure("Speed must be an integer")
-        if value not in [Fan.SLOW, Fan.MEDIUM, Fan.FAST]:
-            return ReturnValue().failure("Speed must be Slow(1), Medium(2), Fast(3)")
-        self.__speed = value
+    def get_color(self) -> str:
+        return self.__color
     
-    @property
-    def on(self) -> ReturnValue:
-        ReturnValue().success(value = self.__on)
-    
-    @on.setter
-    def on(self, value: bool):
-        if not isinstance(value, bool):
-            return ReturnValue().failure("On must be a bool")
-        self.__on = value
-    
-    @property
-    def radius(self) -> ReturnValue:
-        return ReturnValue().success(value = self.__radius)     
+    def set_color(self, color: str) -> None:
+        self.__color = color
+        return 0
 
-    @radius.setter
-    def radius(self, value: float):
-        if not isinstance(value, float):
-            return ReturnValue().failure("Radius must be a float")
-        if value < 0:
-            return ReturnValue().failure("Radius must be greater than 0")
-        self.__radius = value
+    def get_on(self) -> bool:
+        return self.__on
     
-    @property
-    def color(self) -> ReturnValue:
-        return ReturnValue().success(value = self.__color)
-    
-    @color.setter
-    def color(self, value):
-        if not isinstance(value, str):
-            return ReturnValue().failure("color must be string")
-        self.__color = value
-
-    
-    
-
-
-        
-    
-
-    
+    def set_on(self, on: bool) -> None:
+        self.__on = on
+        return 0 
